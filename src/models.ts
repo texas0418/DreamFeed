@@ -174,3 +174,29 @@ export function formatClock(ms: number): string {
   h = h % 12 || 12;
   return `${h}:${d.getMinutes().toString().padStart(2, '0')} ${ampm}`;
 }
+
+/** "5 d", "14 wk", "7 mo", "2 yr" — matches how parents say it.
+ *  Days under 2 weeks, weeks under 6 months, months under 2 years. */
+export function formatBabyAge(birthDateMs: number, nowMs: number): string {
+  const days = Math.floor((nowMs - birthDateMs) / (24 * 3600 * 1000));
+  if (days < 0) return '';
+  if (days < 14) return `${days} d`;
+  if (days < 183) return `${Math.floor(days / 7)} wk`;
+  const b = new Date(birthDateMs);
+  const n = new Date(nowMs);
+  let months = (n.getFullYear() - b.getFullYear()) * 12 + (n.getMonth() - b.getMonth());
+  if (n.getDate() < b.getDate()) months--;
+  if (months < 24) return `${months} mo`;
+  return `${Math.floor(months / 12)} yr`;
+}
+
+/** Parse 'YYYY-MM-DD' to local-midnight epoch ms. Null if invalid. */
+export function parseBirthDate(s: string): number | null {
+  const m = /^(\d{4})-(\d{1,2})-(\d{1,2})$/.exec(s.trim());
+  if (!m) return null;
+  const [y, mo, d] = [Number(m[1]), Number(m[2]), Number(m[3])];
+  if (mo < 1 || mo > 12 || d < 1 || d > 31) return null;
+  const dt = new Date(y, mo - 1, d);
+  if (dt.getMonth() !== mo - 1 || dt.getDate() !== d) return null;
+  return dt.getTime();
+}

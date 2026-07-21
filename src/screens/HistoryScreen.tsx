@@ -47,6 +47,7 @@ export default function HistoryScreen(props: { onBack: () => void }) {
     setEvents(listEventsBetween(dayStart, dayStart + DAY_MS));
   }, [dayStart]);
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- tracked in #2
   useEffect(load, [load]);
 
   const now = Date.now();

@@ -45,7 +45,7 @@ export default function OnboardingScreen() {
           Feeds, sleep, and diapers — logged in two taps, even at 3am.
         </Text>
 
-        <Text style={styles.fieldLabel}>Baby's name</Text>
+        <Text style={styles.fieldLabel}>Baby&apos;s name</Text>
         <TextInput
           value={name}
           onChangeText={setName}

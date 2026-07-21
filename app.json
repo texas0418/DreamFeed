@@ -1,15 +1,22 @@
 {
   "expo": {
-    "name": "dreamfeed",
+    "name": "Dreamfeed",
     "slug": "dreamfeed",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "scheme": "dreamfeed",
+    "owner": "boyscout1970",
     "userInterfaceStyle": "dark",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.dreamfeed.app",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
+      "package": "com.dreamfeed.app",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -20,6 +27,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b8bc174a-b9e8-4693-9559-75810dd8aaf9"
+      }
     }
   }
 }

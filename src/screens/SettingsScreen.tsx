@@ -19,6 +19,7 @@ import { colors } from '../theme';
 import { exportBackup, pickBackup } from '../backup';
 import { exportSummaryPdf } from '../summaryPdf';
 import { replaceAllEvents } from '../db';
+import { purchasePro, restorePurchases, useProAccess } from '../proAccess';
 
 const toDateString = (ms: number | null): string => {
   if (ms == null) return '';
@@ -29,12 +30,46 @@ const toDateString = (ms: number | null): string => {
 
 export default function SettingsScreen(props: { onBack: () => void }) {
   const { settings, update } = useSettings();
+  const isPro = useProAccess();
   const [name, setName] = useState(settings.profile.name);
   const [birthStr, setBirthStr] = useState(toDateString(settings.profile.birthDateMs));
 
   const birthMs = birthStr.trim() === '' ? null : parseBirthDate(birthStr);
   const birthInvalid = birthStr.trim() !== '' && birthMs == null;
   const [busy, setBusy] = useState(false);
+
+  const doUpgrade = async () => {
+    setBusy(true);
+    try {
+      const ok = await purchasePro();
+      if (ok) {
+        Alert.alert('Pro unlocked', 'Thanks! The pediatrician PDF summary is now yours.');
+      }
+    } catch (e) {
+      if (!(e as { userCancelled?: boolean })?.userCancelled) {
+        Alert.alert('Purchase failed', (e as Error).message);
+      }
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const doRestorePurchases = async () => {
+    setBusy(true);
+    try {
+      const ok = await restorePurchases();
+      Alert.alert(
+        ok ? 'Restored' : 'Nothing to restore',
+        ok
+          ? 'Your Pro unlock is active on this device.'
+          : 'No previous purchase was found for this account.',
+      );
+    } catch (e) {
+      Alert.alert('Restore failed', (e as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  };
 
   const doExport = async () => {
     setBusy(true);
@@ -48,6 +83,10 @@ export default function SettingsScreen(props: { onBack: () => void }) {
   };
 
   const doSummary = async () => {
+    if (!isPro) {
+      doUpgrade();
+      return;
+    }
     setBusy(true);
     try {
       await exportSummaryPdf(settings.profile, settings.unit, 7);
@@ -155,10 +194,49 @@ export default function SettingsScreen(props: { onBack: () => void }) {
           </View>
         </View>
 
+        <Text style={styles.sectionLabel}>Dreamfeed Pro</Text>
+        <View style={styles.card}>
+          {isPro ? (
+            <>
+              <View style={styles.proRow}>
+                <Text style={styles.proActiveText}>Pro unlocked ✓</Text>
+              </View>
+              <Text style={styles.dataHint}>
+                Thanks for supporting Dreamfeed. The pediatrician PDF summary is
+                available in Data below.
+              </Text>
+            </>
+          ) : (
+            <>
+              <Pressable onPress={doUpgrade} disabled={busy} style={styles.proRow}>
+                <View style={styles.proRowMain}>
+                  <Text style={styles.proRowTitle}>Unlock Dreamfeed Pro</Text>
+                  <Text style={styles.proRowSub}>
+                    Pediatrician PDF summary + future extras
+                  </Text>
+                </View>
+                <Text style={styles.proPrice}>$14.99</Text>
+              </Pressable>
+              <Text style={styles.dataHint}>One-time purchase. No subscription.</Text>
+            </>
+          )}
+          <View style={styles.dataDivider} />
+          <Pressable
+            onPress={doRestorePurchases}
+            disabled={busy}
+            style={styles.dataRow}
+          >
+            <Text style={styles.dataRowText}>Restore purchases</Text>
+            <Text style={styles.dataRowChev}>›</Text>
+          </Pressable>
+        </View>
+
         <Text style={styles.sectionLabel}>Data</Text>
         <View style={styles.card}>
           <Pressable onPress={doSummary} disabled={busy} style={styles.dataRow}>
-            <Text style={styles.dataRowText}>Pediatrician summary (PDF, last 7 days)</Text>
+            <Text style={styles.dataRowText}>
+              Pediatrician summary (PDF, last 7 days){!isPro ? '  🔒' : ''}
+            </Text>
             <Text style={styles.dataRowChev}>›</Text>
           </Pressable>
           <View style={styles.dataDivider} />
@@ -245,6 +323,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 11,
   },
+  proRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 8,
+  },
+  proRowMain: { flex: 1, paddingRight: 12 },
+  proRowTitle: { color: colors.peachText, fontSize: 15, fontWeight: '700' },
+  proRowSub: { color: colors.textMuted, fontSize: 12, marginTop: 3 },
+  proPrice: { color: colors.peach, fontSize: 16, fontWeight: '700' },
+  proActiveText: { color: colors.peachText, fontSize: 15, fontWeight: '700' },
   dataRowText: { color: colors.textBody, fontSize: 14 },
   dataRowChev: { color: colors.textMuted, fontSize: 16 },
   dataDivider: { height: StyleSheet.hairlineWidth, backgroundColor: colors.hairline },

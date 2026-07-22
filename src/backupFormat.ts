@@ -40,6 +40,7 @@ const SIDES = new Set(['L', 'R']);
 const DIAPERS = new Set(['wet', 'dirty', 'both']);
 
 /** Returns a validated backup or throws Error with a human-readable reason. */
+// eslint-disable-next-line complexity -- tracked in #1
 export function parseBackup(json: string): BackupV1 {
   let raw: unknown;
   try {

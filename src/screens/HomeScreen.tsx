@@ -87,6 +87,7 @@ export default function HomeScreen(props: {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- tracked in #2
     refresh();
     const tick = setInterval(() => setNow(Date.now()), 15000);
     const sub = AppState.addEventListener('change', (s) => {

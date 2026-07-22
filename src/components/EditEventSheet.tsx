@@ -39,6 +39,7 @@ export default function EditEventSheet(props: {
 
   useEffect(() => {
     if (!event) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- tracked in #2
     setStartMs(event.startMs);
     setDurationMs(event.endMs != null ? event.endMs - event.startMs : null);
     setAmountMl(event.amountMl);

@@ -145,7 +145,12 @@ export default function SettingsScreen(props: { onBack: () => void }) {
         <View style={styles.backSpacer} />
       </View>
 
-      <ScrollView contentContainerStyle={styles.body}>
+      <ScrollView
+        contentContainerStyle={styles.body}
+        keyboardShouldPersistTaps="handled"
+        keyboardDismissMode="on-drag"
+        automaticallyAdjustKeyboardInsets
+      >
         <Text style={styles.sectionLabel}>Baby</Text>
         <View style={styles.card}>
           <Text style={styles.fieldLabel}>Name</Text>

@@ -126,7 +126,7 @@ export default function HomeScreen(props: {
       <StatusBar style="light" />
       <ScrollView contentContainerStyle={styles.scroll}>
         <View style={styles.header}>
-          <Text style={styles.headerName}>
+          <Text style={styles.headerName} numberOfLines={1} ellipsizeMode="tail">
             {settings.profile.name || 'Dreamfeed'}
             {settings.profile.birthDateMs != null && (
               <Text style={styles.headerAge}>
@@ -474,9 +474,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  headerName: { color: colors.textPrimary, fontSize: 15, fontWeight: '600' },
+  headerName: {
+    flex: 1,
+    marginRight: 12,
+    color: colors.textPrimary,
+    fontSize: 15,
+    fontWeight: '600',
+  },
   headerAge: { color: colors.textMuted, fontSize: 13, fontWeight: '400' },
-  headerLinks: { flexDirection: 'row', gap: 16 },
+  headerLinks: { flexShrink: 0, flexDirection: 'row', gap: 16 },
   historyLink: { color: colors.peach, fontSize: 14 },
   hero: { alignItems: 'center', paddingVertical: 24 },
   heroLabel: { color: colors.textMuted, fontSize: 12, letterSpacing: 0.4 },

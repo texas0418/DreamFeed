@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dreamfeed — Support</title>
+<style>
+  :root{
+    --bg:#f6f7fb; --panel:#ffffff; --border:#e3e6ef; --ink:#1b2440; --body:#3c445f;
+    --muted:#6b7290; --peach:#c9743a; --navy:#141b2e;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#141b2e; --panel:#1c2440; --border:#34405f; --ink:#e8e6f0; --body:#cfd3e0;
+      --muted:#8a93ad; --peach:#f5b48a; --navy:#0e1424;}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--body);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;font-size:16px;}
+  .wrap{max-width:680px;margin:0 auto;padding:32px 20px 72px;}
+  header{display:flex;align-items:center;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--border);margin-bottom:28px;}
+  .moon{width:34px;height:34px;flex:none;}
+  h1{font-size:23px;color:var(--ink);margin:0;letter-spacing:-.01em;}
+  .tag{color:var(--muted);font-size:13px;margin-top:2px;}
+  h2{font-size:16px;color:var(--ink);margin:26px 0 6px;}
+  p,li{color:var(--body);}
+  a{color:var(--peach);}
+  .lead{font-size:17px;color:var(--ink);}
+  .contact{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin:20px 0 8px;}
+  .contact a{font-weight:600;font-size:17px;}
+  .faq{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:4px 20px;margin-top:8px;}
+  .faq h2{margin-top:18px;}
+  .faq p{margin-top:2px;}
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.4 6.4 0 0 0 10.5 10.5Z" fill="var(--peach)"/><circle cx="15.5" cy="7.5" r="1.2" fill="var(--peach)" opacity=".6"/></svg>
+    <div>
+      <h1>Dreamfeed Support</h1>
+      <div class="tag">Baby Tracker: Feed &amp; Sleep</div>
+    </div>
+  </header>
+
+  <p class="lead">Dreamfeed logs your baby's feeds, nursing, sleep, and diapers in two taps — built for one hand at 3am. Everything stays private on your device.</p>
+
+  <div class="contact">
+    Need help or have a question? Email
+    <a href="mailto:sspi.investments@gmail.com">sspi.investments@gmail.com</a><br>
+    <span style="color:var(--muted);font-size:14px;">We usually reply within 1–2 business days.</span>
+  </div>
+
+  <div class="faq">
+    <h2>Where is my data stored?</h2>
+    <p>Entirely on your device. Dreamfeed has no account and no servers — nothing is uploaded. See our <a href="privacy.html">Privacy Policy</a>.</p>
+
+    <h2>How do I back up my data?</h2>
+    <p>Settings → <strong>Export backup</strong> creates a JSON file you can save to Files, iCloud, or email. To move to a new phone, export on the old one and use <strong>Restore from backup</strong> on the new one.</p>
+
+    <h2>Will I lose my data if I delete the app?</h2>
+    <p>Yes — on-device data is removed when you delete the app. Export a backup first if you want to keep it.</p>
+
+    <h2>What does Dreamfeed Pro include?</h2>
+    <p>A one-time $14.99 purchase unlocks the pediatrician PDF summary (a clean 7-day report of feeds, sleep, and diapers), plus future Pro features. Logging is always free.</p>
+
+    <h2>I bought Pro but it's not showing / I got a new phone.</h2>
+    <p>Go to Settings → <strong>Restore purchases</strong>. Make sure you're signed in with the same Apple ID you purchased with.</p>
+
+    <h2>How is the "time since last feed" calculated?</h2>
+    <p>From when the most recent feed <em>started</em> — the spacing convention pediatricians use.</p>
+  </div>
+
+  <p style="margin-top:22px;"><a href="privacy.html">Privacy Policy</a></p>
+
+  <footer>Dreamfeed · © 2026</footer>
+</div>
+</body>
+</html>

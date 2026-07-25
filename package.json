@@ -2,6 +2,11 @@
   "name": "dreamfeed",
   "version": "1.0.0",
   "main": "index.ts",
+  "expo": {
+    "install": {
+      "exclude": ["expo", "expo-asset", "expo-dev-client", "expo-sharing"]
+    }
+  },
   "dependencies": {
     "expo": "~57.0.4",
     "expo-asset": "~57.0.6",

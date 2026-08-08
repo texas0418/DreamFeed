@@ -40,6 +40,7 @@ import {
 } from '../models';
 import { colors } from '../theme';
 import EditEventSheet from '../components/EditEventSheet';
+import { maybeAskForReview } from '../review';
 import { useSettings } from '../SettingsContext';
 
 const dayStart = (nowMs: number): number => {
@@ -109,6 +110,7 @@ export default function HomeScreen(props: {
     insertEvent(e);
     setSheet('none');
     refresh();
+    maybeAskForReview();
   };
 
   const stopTimer = (e: BabyEvent) => {

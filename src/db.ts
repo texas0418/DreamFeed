@@ -7,6 +7,7 @@ import * as SQLite from 'expo-sqlite';
 import type { BabyEvent } from './models';
 import {
   ALL_EVENTS_SQL,
+  COUNT_EVENTS_SQL,
   DELETE_ALL_EVENTS_SQL,
   DELETE_EVENT_SQL,
   END_EVENT_SQL,
@@ -91,6 +92,12 @@ export function getRunningEvents(): BabyEvent[] {
 export function getLastFeed(nowMs: number): BabyEvent | null {
   const row = getDb().getFirstSync<EventRow>(LAST_FEED_SQL, [nowMs]);
   return row ? rowToEvent(row) : null;
+}
+
+/** Total logged events of every kind (feeds + sleeps + diapers). */
+export function countEvents(): number {
+  const row = getDb().getFirstSync<{ n: number }>(COUNT_EVENTS_SQL);
+  return row?.n ?? 0;
 }
 
 export function getLastNurse(): BabyEvent | null {

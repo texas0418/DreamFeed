@@ -88,6 +88,8 @@ export const LAST_NURSE_SQL = `SELECT * FROM events
   WHERE kind = 'nurse' AND side IS NOT NULL
   ORDER BY start_ms DESC LIMIT 1`;
 
+export const COUNT_EVENTS_SQL = `SELECT COUNT(*) AS n FROM events`;
+
 export const ALL_EVENTS_SQL = `SELECT * FROM events ORDER BY start_ms ASC`;
 
 export const DELETE_ALL_EVENTS_SQL = `DELETE FROM events`;

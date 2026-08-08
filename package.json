@@ -4,7 +4,12 @@
   "main": "index.ts",
   "expo": {
     "install": {
-      "exclude": ["expo", "expo-asset", "expo-dev-client", "expo-sharing"]
+      "exclude": [
+        "expo",
+        "expo-asset",
+        "expo-dev-client",
+        "expo-sharing"
+      ]
     }
   },
   "dependencies": {
@@ -12,7 +17,7 @@
     "expo-asset": "~57.0.6",
     "expo-dev-client": "~57.0.6",
     "expo-document-picker": "^57.0.0",
-    "expo-file-system": "^57.0.0",
+    "expo-file-system": "~57.0.2",
     "expo-keep-awake": "~57.0.1",
     "expo-print": "^57.0.0",
     "expo-sharing": "^57.0.3",
@@ -20,13 +25,13 @@
     "expo-status-bar": "~57.0.0",
     "expo-store-review": "~57.0.1",
     "react": "19.2.3",
-    "react-native": "0.86.0",
+    "react-native": "0.86.2",
     "react-native-purchases": "^10.4.2"
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
     "eslint": "^9.39.5",
-    "eslint-config-expo": "^57.0.0",
+    "eslint-config-expo": "~57.0.1",
     "patch-package": "^8.0.1",
     "typescript": "~6.0.3"
   },

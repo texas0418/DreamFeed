@@ -1,0 +1,42 @@
+DREAMFEED — GOOGLE PLAY STORE LISTING (draft 2026-08-16)
+==========================================================
+
+APP NAME (30 chars max)
+Dreamfeed: Newborn Tracker
+
+SHORT DESCRIPTION (80 chars max)
+Bottles, nursing, sleep, diapers — logged one-handed at 3 am, in the dark.
+
+FULL DESCRIPTION (4000 chars max)
+-----------------------------------------------------
+Built for the 3 am feed: a newborn tracker you can work one-handed, half-asleep, with a baby on your arm — dark by design so nobody in the room wakes up any more than they already are.
+
+LOG IT IN TWO TAPS
+• Bottles — amount and time, done before the burp
+• Nursing — left, right, and how long
+• Sleep — when they went down, when they surfaced
+• Diapers — the record every pediatrician asks about
+
+THE ANSWERS AT A GLANCE
+"When did they last eat?" "Which side?" "How long since the nap started?" Dreamfeed keeps the answers on the home screen — no scrolling, no math, no arguing at 4 am about whose memory is right.
+
+HISTORY THAT MAKES THE PEDIATRICIAN VISIT EASY
+The full day-by-day record: feeds, amounts, sleep stretches, diaper counts. Show the chart instead of reconstructing the week from fog.
+
+BUILT FOR EXHAUSTED HUMANS
+Big targets, dark palette, zero ceremony. No account. Your baby's data lives on your phone, full stop.
+
+You'll sleep again someday. Until then, Dreamfeed keeps the log.
+-----------------------------------------------------
+
+CATEGORY: Parenting
+WEBSITE: https://simonbuilds.app/dreamfeed/
+PRIVACY POLICY URL (verified live 2026-08-16): https://texas0418.github.io/DreamFeed/privacy.html
+
+GRAPHIC ASSETS (store/): icon + feature graphic DONE; screenshots-android/ from release APK this run
+
+DATA SAFETY: local-only, nothing collected; purchases via RevenueCat if Pro present (react-native-purchases in deps — verify product at submission). NOTE Play's "Parenting" category questions: app stores child health data ON DEVICE ONLY, no accounts, no sharing — answer accordingly.
+CONTENT RATING: Everyone
+
+RELEASE NOTES (first release)
+Dreamfeed arrives on Android: bottles, nursing, sleep, and diapers, logged one-handed in the dark — with the answers parents actually need on one screen.

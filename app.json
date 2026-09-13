@@ -35,7 +35,8 @@
       }
     },
     "plugins": [
-      "expo-asset"
+      "expo-asset",
+      "./plugins/withReleaseSigning.js"
     ]
   }
 }

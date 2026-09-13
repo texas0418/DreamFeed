@@ -2,7 +2,7 @@
   "expo": {
     "name": "Dreamfeed",
     "slug": "dreamfeed",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "scheme": "dreamfeed",
@@ -13,7 +13,8 @@
       "bundleIdentifier": "com.dreamfeed.app",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
-      }
+      },
+      "buildNumber": "6"
     },
     "android": {
       "package": "com.dreamfeed.app",

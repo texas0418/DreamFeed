@@ -8,7 +8,15 @@
         "expo",
         "expo-asset",
         "expo-dev-client",
-        "expo-sharing"
+        "expo-sharing",
+        "react-native",
+        "expo-document-picker",
+        "expo-file-system",
+        "expo-keep-awake",
+        "expo-print",
+        "expo-sqlite",
+        "expo-store-review",
+        "eslint-config-expo"
       ]
     }
   },
@@ -17,13 +25,13 @@
     "expo-asset": "~57.0.6",
     "expo-dev-client": "~57.0.6",
     "expo-document-picker": "^57.0.0",
-    "expo-file-system": "~57.0.2",
+    "expo-file-system": "~57.0.4",
     "expo-keep-awake": "~57.0.1",
     "expo-print": "^57.0.0",
     "expo-sharing": "^57.0.3",
     "expo-sqlite": "^57.0.0",
     "expo-status-bar": "~57.0.0",
-    "expo-store-review": "~57.0.1",
+    "expo-store-review": "~57.0.2",
     "expo-system-ui": "~57.0.2",
     "react": "19.2.3",
     "react-native": "0.86.2",

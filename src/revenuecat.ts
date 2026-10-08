@@ -11,15 +11,17 @@
 // trap: the wizard auto-created `Pro`, not `pro`). Whatever it created, this constant
 // must equal it character-for-character.
 
-// Public SDK keys (safe to ship in the app bundle — these are NOT secret).
-export const RC_API_KEY_IOS = 'appl_ipmBunrvrsXfRDXUKjSSVrrJchh'; // publishable client key (safe to ship)
-export const RC_API_KEY_ANDROID = 'goog_oFUoqQSDgLJVaUyOTweIToaTBHJ'; // starts with "goog_"
+// Public SDK keys (safe to ship in the app bundle, and deliberately NOT
+// exported: module-private consts let Metro drop the keys the store flag
+// rules out, which is what makes the bundle grep a real check — these are NOT secret).
+const RC_API_KEY_IOS = 'appl_ipmBunrvrsXfRDXUKjSSVrrJchh'; // publishable client key (safe to ship)
+const RC_API_KEY_ANDROID = 'goog_oFUoqQSDgLJVaUyOTweIToaTBHJ'; // starts with "goog_"
 
 // Amazon Appstore build of the same Android binary. EXPO_PUBLIC_STORE is
 // inlined by Metro at bundle time, so the branch in keyForPlatform resolves
 // to a single key and the unused ones are dropped from the bundle. Verify
 // that by grepping the built bundle: amzn_ present, goog_ absent.
-export const RC_API_KEY_AMAZON = 'amzn_KVdnFsgGrrdhkrylWVIEbrzAlrD'; // starts with "amzn_"
+const RC_API_KEY_AMAZON = 'amzn_KVdnFsgGrrdhkrylWVIEbrzAlrD'; // starts with "amzn_"
 export const IS_AMAZON_BUILD = process.env.EXPO_PUBLIC_STORE === 'amazon';
 
 // The entitlement that grants Pro. CONFIRM on the RC Entitlements page before trusting.

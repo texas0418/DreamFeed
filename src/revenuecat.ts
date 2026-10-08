@@ -11,9 +11,18 @@
 // trap: the wizard auto-created `Pro`, not `pro`). Whatever it created, this constant
 // must equal it character-for-character.
 
-// Public SDK keys (safe to ship in the app bundle — these are NOT secret).
-export const RC_API_KEY_IOS = 'appl_ipmBunrvrsXfRDXUKjSSVrrJchh'; // publishable client key (safe to ship)
-export const RC_API_KEY_ANDROID = 'goog_oFUoqQSDgLJVaUyOTweIToaTBHJ'; // starts with "goog_"
+// Public SDK keys (safe to ship in the app bundle, and deliberately NOT
+// exported: module-private consts let Metro drop the keys the store flag
+// rules out, which is what makes the bundle grep a real check — these are NOT secret).
+const RC_API_KEY_IOS = 'appl_ipmBunrvrsXfRDXUKjSSVrrJchh'; // publishable client key (safe to ship)
+const RC_API_KEY_ANDROID = 'goog_oFUoqQSDgLJVaUyOTweIToaTBHJ'; // starts with "goog_"
+
+// Amazon Appstore build of the same Android binary. EXPO_PUBLIC_STORE is
+// inlined by Metro at bundle time, so the branch in keyForPlatform resolves
+// to a single key and the unused ones are dropped from the bundle. Verify
+// that by grepping the built bundle: amzn_ present, goog_ absent.
+const RC_API_KEY_AMAZON = 'amzn_KVdnFsgGrrdhkrylWVIEbrzAlrD'; // starts with "amzn_"
+export const IS_AMAZON_BUILD = process.env.EXPO_PUBLIC_STORE === 'amazon';
 
 // The entitlement that grants Pro. CONFIRM on the RC Entitlements page before trusting.
 export const ENTITLEMENT_ID = 'pro';
@@ -24,11 +33,13 @@ export const PRODUCT_ID = 'dreamfeed_pro_lifetime';
 const PLACEHOLDER_KEYS = new Set([
   'REPLACE_WITH_RC_IOS_KEY',
   'REPLACE_WITH_RC_ANDROID_KEY',
+  'REPLACE_WITH_RC_AMAZON_KEY',
   '',
 ]);
 
 export function keyForPlatform(os: 'ios' | 'android'): string {
-  return os === 'ios' ? RC_API_KEY_IOS : RC_API_KEY_ANDROID;
+  if (os !== 'android') return RC_API_KEY_IOS;
+  return IS_AMAZON_BUILD ? RC_API_KEY_AMAZON : RC_API_KEY_ANDROID;
 }
 
 export function isPlaceholderKey(key: string): boolean {

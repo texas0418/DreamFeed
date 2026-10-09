@@ -16,6 +16,7 @@ import { StatusBar } from 'expo-status-bar';
 import { formatBabyAge, parseBirthDate, VolumeUnit } from '../models';
 import { useSettings } from '../SettingsContext';
 import { colors } from '../theme';
+import MoreApps from '../components/MoreApps';
 import { exportBackup, pickBackup } from '../backup';
 import { exportSummaryPdf } from '../summaryPdf';
 import { replaceAllEvents } from '../db';
@@ -266,6 +267,7 @@ export default function SettingsScreen(props: { onBack: () => void }) {
         >
           <Text style={styles.saveBtnText}>Save</Text>
         </Pressable>
+        <MoreApps />
       </ScrollView>
     </View>
   );

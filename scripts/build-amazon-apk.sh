@@ -30,12 +30,15 @@ export EXPO_PUBLIC_STORE=amazon
 APK=android/app/build/outputs/apk/release/app-release.apk
 # The key is only useful if it actually made it into the binary. Checking the
 # artifact, not just the inputs, is the lesson from the Oct 2026 rejections.
-if ! unzip -l "$APK" | grep -q "assets/AppstoreAuthenticationKey.pem"; then
-  echo "APK does not contain assets/AppstoreAuthenticationKey.pem." >&2
-  echo "Run: npx expo prebuild --platform android --no-install, then rebuild." >&2
-  exit 1
-fi
-echo "Verified: assets/AppstoreAuthenticationKey.pem is in the APK."
+APK_ENTRIES=$(unzip -Z1 "$APK")
+case "$APK_ENTRIES" in
+  *"assets/AppstoreAuthenticationKey.pem"*)
+    echo "Verified: assets/AppstoreAuthenticationKey.pem is in the APK." ;;
+  *)
+    echo "APK does not contain assets/AppstoreAuthenticationKey.pem." >&2
+    echo "Run: npx expo prebuild --platform android --no-install, then rebuild." >&2
+    exit 1 ;;
+esac
 
 ls -lh "$APK"
 echo "Amazon APK ready: $APK"

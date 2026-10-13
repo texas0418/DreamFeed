@@ -16,9 +16,26 @@ if [ ! -f android/keystore.properties ]; then
   exit 1
 fi
 
+if [ ! -f amazon/AppstoreAuthenticationKey.pem ]; then
+  echo "amazon/AppstoreAuthenticationKey.pem missing: Amazon IAP would fail with" >&2
+  echo "\"Failed to get user data\" and no purchase could start." >&2
+  echo "Download it from the Developer Console: the app > Step 1 > Additional" >&2
+  echo "information > View public key." >&2
+  exit 1
+fi
+
 export EXPO_PUBLIC_STORE=amazon
 (cd android && ./gradlew assembleRelease)
 
 APK=android/app/build/outputs/apk/release/app-release.apk
+# The key is only useful if it actually made it into the binary. Checking the
+# artifact, not just the inputs, is the lesson from the Oct 2026 rejections.
+if ! unzip -l "$APK" | grep -q "assets/AppstoreAuthenticationKey.pem"; then
+  echo "APK does not contain assets/AppstoreAuthenticationKey.pem." >&2
+  echo "Run: npx expo prebuild --platform android --no-install, then rebuild." >&2
+  exit 1
+fi
+echo "Verified: assets/AppstoreAuthenticationKey.pem is in the APK."
+
 ls -lh "$APK"
 echo "Amazon APK ready: $APK"

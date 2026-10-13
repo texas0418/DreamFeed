@@ -27,6 +27,9 @@ yarn-error.*
 # macOS
 .DS_Store
 *.pem
+# ...except the Amazon Appstore public key, which has to ship inside
+# the APK for in-app purchases to work at all.
+!amazon/AppstoreAuthenticationKey.pem
 
 # local env files
 .env*.local
